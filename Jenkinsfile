@@ -4,8 +4,8 @@ pipeline {
     environment {
         IMAGE_NAME = 'proyectofinal'
         IMAGE_NAME_TEST = 'proyectofinaltesting'
-        DOCKER_USARNAME = 'gabiizdr'
-        DCOKER_CREDENTIAL = 'docker-hub-credentials'
+        DOCKER_USARNAME = 'Gabriizdr'
+        DCOKER_CREDENTIAL = 'docker-hub-creds'
         DOCKER_IMAGE = "${DOCKER_USARNAME}/${IMAGE_NAME}"
     }
 
@@ -23,7 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    docker.build(IMAGE_NAME, "--file=Dockerfile.test .")
+                    docker.build(IMAGE_NAME_TEST, "--file=Dockerfile.test .")
                 }
             }
         }
