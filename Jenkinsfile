@@ -31,10 +31,31 @@ pipeline {
         stage ('Build') {
             steps {
                 script {
-                    docker.build(DOCKER_IMAGE, ".")
+                    image = docker.build(DOCKER_IMAGE, ".")
                 }
                 
             }
         }
+
+        stage ('Push'){
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', DCOKER_CREDENTIAL) {
+                        image.push()
+                    }
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    bat 'kubectl apply -f k8s/namespace.yaml'
+                    bat 'kubectl apply -f k8s/deployment.yaml'
+                    bat 'kubectl apply -f k8s/service.yaml'
+                }
+            }
+        }
+        
     }
 }
