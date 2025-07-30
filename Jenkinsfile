@@ -5,7 +5,7 @@ pipeline {
         IMAGE_NAME = 'proyectofinal'
         IMAGE_NAME_TEST = 'proyectofinaltesting'
         DOCKER_USARNAME = 'Gabriizdr'
-        DCOKER_CREDENTIAL = 'docker-hub-creds'
+        DCOKER_CREDENTIAL = 'docker-hub-credentials'
         DOCKER_IMAGE = "${DOCKER_USARNAME}/${IMAGE_NAME}"
     }
 
