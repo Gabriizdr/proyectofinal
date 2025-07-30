@@ -1,6 +1,14 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = 'proyectofinal'
+        IMAGE_NAME_TEST = 'proyectofinaltesting'
+        DOCKER_USARNAME = 'gabiizdr'
+        DCOKER_CREDENTIAL = 'docker-hub-credentials'
+        DOCKER_IMAGE = "${DOCKER_USARNAME}/${IMAGE_NAME}"
+    }
+
     triggers {
         githubPush()
     }
@@ -15,8 +23,14 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    docker.build("proyectofinaltesting", "--file=Dockerfile.test .")
+                    docker.build(IMAGE_NAME_TEST, "--file=Dockerfile.test .")
                 }
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                docker.build(DOCKER_IMAGE, ".")
             }
         }
     }

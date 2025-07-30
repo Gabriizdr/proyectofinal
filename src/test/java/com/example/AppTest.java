@@ -14,6 +14,5 @@ public class AppTest {
         Javalin app = App.createApp();
         JavalinTest.test(app, (server, client) -> {
             assertThat(client.get("/hello").body().string()).isEqualTo("Hello World");
-        });
-    }
+        });    }
 }
