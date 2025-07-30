@@ -23,14 +23,14 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    docker.build(IMAGE_NAME_TEST, "--file=Dockerfile.test .")
+                    docker.build(IMAGE_NAME, "--file=Dockerfile.test .")
                 }
             }
         }
 
         stage ('Build') {
             steps {
-                docker.build(IMAGE_NAME, ".")
+                docker.build(DOCKER_IMAGE, ".")
             }
         }
     }
