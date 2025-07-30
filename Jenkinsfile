@@ -63,7 +63,7 @@ pipeline {
 
     post {
         failure {
-            mail to: EMAIL_TO, EMAIL_FROM, subject: "Jenkins Build Failed", body: "jenkins build failed"
+            mail to: EMAIL_TO, from: EMAIL_FROM, subject: "Jenkins Build Failed", body: "jenkins build failed"
                 }
     }
 }
