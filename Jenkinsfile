@@ -30,7 +30,10 @@ pipeline {
 
         stage ('Build') {
             steps {
-                docker.build(DOCKER_IMAGE, ".")
+                script {
+                    docker.build(DOCKER_IMAGE, ".")
+                }
+                
             }
         }
     }
