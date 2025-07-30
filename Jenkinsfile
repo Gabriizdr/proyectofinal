@@ -7,6 +7,8 @@ pipeline {
         DOCKER_USARNAME = 'gabiizdr'
         DCOKER_CREDENTIAL = 'docker-hub-credentials'
         DOCKER_IMAGE = "${DOCKER_USARNAME}/${IMAGE_NAME}"
+        EMAIL_FROM = 'gaby94dr@gmail.com'
+        EMAIL_TO = 'gaby94dr@gmail.com'
     }
 
     triggers {
@@ -57,5 +59,11 @@ pipeline {
             }
         }
         
+    }
+
+    post {
+        failure {
+            mail to: EMAIL_TO, EMAIL_FROM, subject: "Jenkins Build Failed", body: "jenkins build failed"
+                }
     }
 }
